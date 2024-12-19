@@ -41,7 +41,8 @@ class Source
 
     public static function resolveNamespace(NamespaceData $data): string
     {
-        return Str::replace(
+        /**@var string $namespace */
+        $namespace = Str::replace(
             search: '/',
             replace: '\\',
             subject: static::resolveNamespaceDir(
@@ -52,6 +53,8 @@ class Source
                     ->finish(cap: $data->endsWith ? '/' . $data->endsWith : '')
             )
         );
+        
+        return $namespace;
     }
 
     public static function resolveNamespaceDir(NamespaceData $data, string $namespace): string
@@ -65,32 +68,47 @@ class Source
 
     public static function resolveNamespacePath(string $namespace): string
     {
-        return base_path(
+        /**@var string $path */
+        $path = base_path(
             path: static::resolveBasePath() . static::transformNamespaceToPath(namespace: $namespace)
         );
+
+        return $path;
     }
 
     public static function transformNamespaceToPath(string $namespace): string
     {
-        return Str::replace(
+        /**@var string $path */
+        $path = Str::replace(
             search: '\\',
             replace: '/',
             subject: $namespace
         );
+
+        return $path;
     }
 
     public static function resolveNameFromPHP(string $name): string
     {
-        return static::resolveNameFromFile(name: $name, suffix: 'php');
+        /**@var string $name */
+        $name = static::resolveNameFromFile(name: $name, suffix: 'php');
+
+        return $name;
     }
 
     public static function resolveNameFromFile(string $name, string $suffix): string
     {
-        return Str::replace(search: Str::start($suffix, prefix: '.'), replace: '', subject: $name);
+        /**@var string $name */
+        $name = Str::replace(search: Str::start($suffix, prefix: '.'), replace: '', subject: $name);
+
+        return $name;
     }
 
     public static function resolveStubForPath(string $name): string
     {
-        return Str::replace(search: ':name', replace: $name, subject: __DIR__ . '/../../stubs/:name.stub');
+        /**@var string $path */
+        $path = Str::replace(search: ':name', replace: $name, subject: __DIR__ . '/../../stubs/:name.stub');
+
+        return $path;
     }
 }

@@ -27,6 +27,7 @@ readonly class ReplacePlaceholderAction extends Action
 
         $resolved = $placeholders->toArray();
 
+        /**@var string $stub */
         $stub = $filesystem->get(path: $filePath);
 
         Collection::make($resolved)

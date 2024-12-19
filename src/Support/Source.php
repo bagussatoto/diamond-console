@@ -41,7 +41,7 @@ class Source
 
     public static function resolveNamespace(NamespaceData $data): string
     {
-        /**@var string $namespace */
+        /** @var string $namespace */
         $namespace = Str::replace(
             search: '/',
             replace: '\\',
@@ -68,7 +68,7 @@ class Source
 
     public static function resolveNamespacePath(string $namespace): string
     {
-        /**@var string $path */
+        /** @var string $path */
         $path = base_path(
             path: static::resolveBasePath() . static::transformNamespaceToPath(namespace: $namespace)
         );
@@ -78,7 +78,7 @@ class Source
 
     public static function transformNamespaceToPath(string $namespace): string
     {
-        /**@var string $path */
+        /** @var string $path */
         $path = Str::replace(
             search: '\\',
             replace: '/',
@@ -90,7 +90,7 @@ class Source
 
     public static function resolveNameFromPHP(string $name): string
     {
-        /**@var string $name */
+        /** @var string $name */
         $name = static::resolveNameFromFile(name: $name, suffix: 'php');
 
         return $name;
@@ -98,7 +98,7 @@ class Source
 
     public static function resolveNameFromFile(string $name, string $suffix): string
     {
-        /**@var string $name */
+        /** @var string $name */
         $name = Str::replace(search: Str::start($suffix, prefix: '.'), replace: '', subject: $name);
 
         return $name;
@@ -106,7 +106,7 @@ class Source
 
     public static function resolveStubForPath(string $name): string
     {
-        /**@var string $path */
+        /** @var string $path */
         $path = Str::replace(search: ':name', replace: $name, subject: __DIR__ . '/../../stubs/:name.stub');
 
         return $path;

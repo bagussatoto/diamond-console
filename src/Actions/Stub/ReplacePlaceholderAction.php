@@ -27,7 +27,7 @@ readonly class ReplacePlaceholderAction extends Action
 
         $resolved = $placeholders->toArray();
 
-        /**@var string $stub */
+        /** @var string $stub */
         $stub = $filesystem->get(path: $filePath);
 
         Collection::make($resolved)
@@ -48,6 +48,7 @@ readonly class ReplacePlaceholderAction extends Action
                 }
             );
 
+        /** @var string $contents */
         $contents = $stub;
 
         $filesystem->ensureDirectoryExists(path: Str::of($filePath)->beforeLast(search: '/'));

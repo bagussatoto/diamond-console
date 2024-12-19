@@ -82,7 +82,7 @@ class InstallCommand extends Command
             $filesystem->ensureDirectoryExists($this->resolveInfrastructurePath());
             $filesystem->moveDirectory(from: app_path(path: 'Providers'), to: $this->resolveInfrastructurePath());
             $configPath = base_path(path: '/config/app.php');
-            /**@var string $contents */
+            /** @var string $contents */
             $contents = Str::replace(
                 search: 'App\\Providers',
                 replace: $this->resolveNamespace(),
@@ -92,7 +92,7 @@ class InstallCommand extends Command
             $filesystem->put(path: $configPath, contents: $contents);
 
             foreach ($filesystem->files($this->resolveInfrastructurePath()) as $file) {
-                /**@var string $contents */
+                /** @var string $contents */
                 $contents = Str::replace(
                     search: 'App\\Providers',
                     replace: $this->resolveNamespace(),
